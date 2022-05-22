@@ -23,6 +23,7 @@ import NxCloud from './icons/nx-cloud.svg';
 import GitHub from './icons/github.svg';
 import Terminal from './icons/terminal.svg';
 import Heart from './icons/heart.svg';
+import { App as SharedApp } from '@nx-samples-rn/shared';
 
 export const App = () => {
   const [whatsNextYCoord, setWhatsNextYCoord] = useState<number>(0);
@@ -41,9 +42,7 @@ export const App = () => {
         >
           <View style={styles.section}>
             <Text style={styles.textLg}>Hello there,</Text>
-            <Text style={[styles.textXL, styles.appTitleText]} testID="heading">
-              Welcome Mobile 👋
-            </Text>
+            <SharedApp />
           </View>
           <View style={styles.section}>
             <View style={styles.hero}>
