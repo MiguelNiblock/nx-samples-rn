@@ -9,6 +9,8 @@
     "noEmit": false
   },
   "include": [
+    "test-setup.ts",
+    "src/**/*",
     "jest.config.ts",
     "**/*.test.ts",
     "**/*.spec.ts",
