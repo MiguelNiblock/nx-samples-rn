@@ -10,6 +10,28 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
+  // compiler: {
+  //   styledComponents: true,//Only used when there's no babel config file
+  // },
+  webpack: (webpackConfig, context) => {
+    //https://github.com/vercel/next.js/blob/canary/examples/with-react-native-web/next.config.js
+    webpackConfig.resolve.alias = {
+      ...(webpackConfig.resolve.alias || {}),
+      // Transform all direct `react-native` imports to `react-native-web`
+      'react-native$': 'react-native-web',
+    };
+    //https://github.com/vercel/next.js/blob/canary/examples/with-react-native-web/next.config.js
+    webpackConfig.resolve.extensions = [
+      // Preference to the .web. version of a file
+      '.web.js',
+      '.web.jsx',
+      '.web.ts',
+      '.web.tsx',
+      ...webpackConfig.resolve.extensions,
+    ];
+    // webpackConfig.module.rules.push({});
+    return webpackConfig;
+  },
 };
 
 module.exports = withNx(nextConfig);
