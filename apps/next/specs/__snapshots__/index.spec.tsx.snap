@@ -17,7 +17,7 @@ exports[`Index should render successfully 1`] = `
           >
             <h1>
               <span>
-                 Hello there, 
+                 Hello, 
               </span>
               Welcome next 👋
             </h1>
