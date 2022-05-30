@@ -1,3 +1,12 @@
+// const { withExpo } = require('@expo/next-adapter');
+const withFonts = require('next-fonts');
+const withPlugins = require('next-compose-plugins');
+const withTM = require('next-transpile-modules')([
+  'react-native-web',
+  'react-native-svg',
+  'native-base',
+  'react-native-svg',
+]);
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const withNx = require('@nrwl/next/plugins/with-nx');
 
@@ -34,4 +43,12 @@ const nextConfig = {
   },
 };
 
-module.exports = withNx(nextConfig);
+module.exports = withPlugins(
+  [
+    withNx,
+    withTM,
+    [withFonts, { projectRoot: __dirname }],
+    // [withExpo, { projectRoot: __dirname }], //This makes it not work, and suddenly nx serve will require a package.json in Next project. It's also not necessary to transpile modules.
+  ],
+  nextConfig
+);
