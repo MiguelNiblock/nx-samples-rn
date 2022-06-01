@@ -1,54 +1,7 @@
-// const { withExpo } = require('@expo/next-adapter');
-const withFonts = require('next-fonts');
-const withPlugins = require('next-compose-plugins');
-const withTM = require('next-transpile-modules')([
-  'react-native-web',
-  'react-native-svg',
-  'native-base',
-  'react-native-svg',
-]);
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const withNx = require('@nrwl/next/plugins/with-nx');
+const { withNativebase } = require('@native-base/next-adapter');
 
-/**
- * @type {import('@nrwl/next/plugins/with-nx').WithNxOptions}
- **/
-const nextConfig = {
-  nx: {
-    // Set this to true if you would like to to use SVGR
-    // See: https://github.com/gregberge/svgr
-    svgr: false,
-  },
-  // compiler: {
-  //   styledComponents: true,//Only used when there's no babel config file
-  // },
-  webpack: (webpackConfig, context) => {
-    //https://github.com/vercel/next.js/blob/canary/examples/with-react-native-web/next.config.js
-    webpackConfig.resolve.alias = {
-      ...(webpackConfig.resolve.alias || {}),
-      // Transform all direct `react-native` imports to `react-native-web`
-      'react-native$': 'react-native-web',
-    };
-    //https://github.com/vercel/next.js/blob/canary/examples/with-react-native-web/next.config.js
-    webpackConfig.resolve.extensions = [
-      // Preference to the .web. version of a file
-      '.web.js',
-      '.web.jsx',
-      '.web.ts',
-      '.web.tsx',
-      ...webpackConfig.resolve.extensions,
-    ];
-    // webpackConfig.module.rules.push({});
-    return webpackConfig;
-  },
-};
-
-module.exports = withPlugins(
-  [
-    withNx,
-    withTM,
-    [withFonts, { projectRoot: __dirname }],
-    // [withExpo, { projectRoot: __dirname }], //This makes it not work, and suddenly nx serve will require a package.json in Next project. It's also not necessary to transpile modules.
+module.exports = withNativebase({
+  dependencies: [
+    // your plugins go here.
   ],
-  nextConfig
-);
+});

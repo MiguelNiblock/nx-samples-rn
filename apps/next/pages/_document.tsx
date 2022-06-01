@@ -1,32 +1,34 @@
-/* eslint-disable react/display-name */
-import { ReactElement } from 'react';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { ServerStyleSheet } from 'styled-components';
+export { default } from '@native-base/next-adapter/document';
 
-export default class CustomDocument extends Document<{
-  styleTags: ReactElement[];
-}> {
-  static getInitialProps({ renderPage }) {
-    const sheet = new ServerStyleSheet();
+// /* eslint-disable react/display-name */
+// import { ReactElement } from 'react';
+// import Document, { Html, Head, Main, NextScript } from 'next/document';
+// import { ServerStyleSheet } from 'styled-components';
 
-    const page = renderPage(
-      (App) => (props) => sheet.collectStyles(<App {...props} />)
-    );
+// export default class CustomDocument extends Document<{
+//   styleTags: ReactElement[];
+// }> {
+//   static getInitialProps({ renderPage }) {
+//     const sheet = new ServerStyleSheet();
 
-    const styleTags = sheet.getStyleElement();
+//     const page = renderPage(
+//       (App) => (props) => sheet.collectStyles(<App {...props} />)
+//     );
 
-    return { ...page, styleTags };
-  }
+//     const styleTags = sheet.getStyleElement();
 
-  render() {
-    return (
-      <Html>
-        <Head>{this.props.styleTags}</Head>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
-  }
-}
+//     return { ...page, styleTags };
+//   }
+
+//   render() {
+//     return (
+//       <Html>
+//         <Head>{this.props.styleTags}</Head>
+//         <body>
+//           <Main />
+//           <NextScript />
+//         </body>
+//       </Html>
+//     );
+//   }
+// }
