@@ -24,7 +24,6 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@expo/next-adapter": "^4.0.5",
     "@native-base/next-adapter": "^1.1.9",
     "@nrwl/cli": "14.1.7",
     "@nrwl/cypress": "14.1.7",
